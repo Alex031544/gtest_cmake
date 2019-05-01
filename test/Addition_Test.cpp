@@ -23,3 +23,14 @@ TEST_F(AdditionTest,twoValues){
   EXPECT_EQ(9,addition.twoValues(x,y));
   EXPECT_EQ(5,addition.twoValues(2,3));
 }
+
+TEST_F(AdditionTest,twoValuesT){
+  Addition addition;
+
+  const int xi = 4, yi = 5;
+  EXPECT_EQ(9,addition.twoValuesT(xi,yi));
+  EXPECT_EQ(5,addition.twoValuesT(2,3));
+
+  const double xd=7.7, yd=2.2;
+  EXPECT_EQ(9.9,addition.twoValuesT(xd,yd));
+}

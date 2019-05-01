@@ -1,21 +1,16 @@
+cmake_minimum_required(VERSION 3.0)
 
 ### gtest ENVIRONMENT ##########################################################
 
-# Locate GTest (package libgtest-dev must be installed)
-find_package(GTest REQUIRED)
-#include_directories(${GTEST_INCLUDE_DIRS})
-
-# add sources of libgtest-dev and tell CMake to build it into the subfolder
-# libgtest (this CMakeLists.txt provides the target gtest)
-add_subdirectory(/usr/src/gtest libgtest)
-# add this library
-link_directories(${PROJECT_BINARY_DIR}/test/libgtest)
+add_subdirectory(gtest)
 
 ### function createTest ########################################################
 # ARG testname - name of the test
 # ARG src2test - source file which shall be tested
 # ARG testsrc  - source file with specific test definitions
 function(createTest testname src2test testsrc)
+
+  message("Tests: Create test: ${testname}")
 
   add_executable( ${testname}
     ${src2test}
