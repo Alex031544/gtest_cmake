@@ -36,6 +36,17 @@ function(createTest testname src2test testsrc)
       ${CMAKE_CURRENT_BINARY_DIR}/${testname}
   )
 
+  # Install executables before testing in order to make them available for
+  # error investigations.
+  add_custom_command(
+    TARGET ${testname} POST_BUILD
+    COMMENT "Install test executables to ${CMAKE_INSTALL_PREFIX}/tests"
+    COMMAND
+      mkdir -p ${CMAKE_INSTALL_PREFIX}/tests
+    COMMAND
+      cp ${CMAKE_CURRENT_BINARY_DIR}/${testname} ${CMAKE_INSTALL_PREFIX}/tests/${testname}
+  )
+
   # collect all tests to the test targets
   add_dependencies( tests
     ${testname}

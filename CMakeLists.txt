@@ -41,7 +41,7 @@ add_executable( application
 # In this case the tests will be performed prior the target will build and
 # installed.
 if(CMAKE_TESTING_ENABLED)
-    add_dependencies( application tests)
+    add_dependencies( application tests )
 endif()
 
 install(

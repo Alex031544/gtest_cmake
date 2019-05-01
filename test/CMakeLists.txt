@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
-include(${CMAKE_SOURCE_DIR}/test/gtest/gtest.cmake)
+project(Tests)
+include(${CMAKE_CURRENT_LIST_DIR}/gtest/gtest.cmake)
 
 ### set sources to test ########################################################
 include_directories(${CMAKE_SOURCE_DIR}/src)
