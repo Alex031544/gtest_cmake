@@ -14,6 +14,16 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin)
 
 ### TEST SETTINGS ##############################################################
 
+
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
 enable_testing()
 
 # only build tests if tests are enabled
@@ -36,13 +46,6 @@ add_executable( application
   src/app.cpp
   ${SOURCES}
 )
-
-# Only declare tests as dependencies if tests are enabled.
-# In this case the tests will be performed prior the target will build and
-# installed.
-if(CMAKE_TESTING_ENABLED)
-    add_dependencies( application tests )
-endif()
 
 install(
   TARGETS
